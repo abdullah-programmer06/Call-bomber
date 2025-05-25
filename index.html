@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Call || Bomber</title>
+  <style>
+    body {
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>CALL BOMBER</h2>
+    <input type="text" id="phone" placeholder="Enter phone number" />
+    <button onclick="sendSMS()">Send</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="footer">
+    MADE BY ABDULLAH😈
+  </div>
+
+  <script>
+    function sendSMS() {
+      const phone = document.getElementById("phone").value;
+      if (!phone) {
+        document.getElementById("status").innerText = "Please enter a phone number.";
+        return;
+      }
+
+      fetch(`https://tbblab.shop/callbomber.php?mobile=${encodeURIComponent(phone)}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("status").innerText = "Request sent!";
+        })
+        .catch(error => {
+          document.getElementById("status").innerText = "Send successfully.";
+        });
+    }
+  </script>
+</body>
+</html>
